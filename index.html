@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaWrath | Digital Illustrator Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* New "Clean Dark" Palette */
+            --bg-dark: #0a0a0a;         /* Near black */
+            --bg-card: #1a1a1a;         /* Dark grey */
+            --accent-primary: #ffffff;  /* Pure white */
+            --accent-secondary: #999999;/* Medium grey */
+            --accent-highlight: #ffffff;/* Pure white */
+            --text-light: #E5E5E5;      /* Light grey */
+            --text-dark: #888888;       /* Darker grey */
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark); /* Solid, clean dark background */
+            color: var(--text-light);
+            /* No textures or complex gradients */
+        }
+        
+        .font-heading {
+            font-family: 'Oswald', sans-serif;
+            @apply font-bold uppercase tracking-wider;
+        }
+
+        .btn {
+            @apply font-semibold tracking-wide py-3 px-7 rounded-full transition-all duration-300 ease-in-out;
+        }
+        
+        /* Primary button is now white with black text */
+        .btn-primary {
+            @apply bg-[var(--accent-highlight)] text-black shadow-lg shadow-white/10 hover:bg-gray-300;
+        }
+        /* Secondary is a clean outline */
+        .btn-secondary {
+            @apply border-2 border-[var(--accent-secondary)] text-[var(--accent-secondary)] hover:bg-[var(--accent-secondary)] hover:text-white;
+        }
+        
+        .card-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            @apply rounded-xl;
+        }
+        
+        .gallery-item .gallery-overlay {
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .lightbox {
+            display: none; /* Hidden by default */
+        }
+
+        /* Scroll Animation styles */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Gallery Tab styles */
+        .gallery-tab {
+            @apply font-semibold text-lg py-2 px-6 rounded-full cursor-pointer transition-colors duration-300;
+        }
+        .gallery-tab.active-tab {
+            @apply bg-[var(--accent-primary)] text-black; /* White active tab */
+        }
+        .gallery-tab:not(.active-tab) {
+            @apply text-[var(--text-dark)] hover:bg-[var(--bg-card)] hover:text-white;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HERO SECTION -->
+    <header id="home" class="min-h-screen flex items-center justify-center text-center p-6 relative overflow-hidden">
+        <div class="z-10">
+            <h1 class="font-heading text-7xl md:text-9xl font-extrabold text-white tracking-tighter">AquaWrath</h1>
+            <p class="mt-4 text-xl md:text-2xl text-[var(--text-dark)] font-medium">
+                Anime-style illustrations for expression, mood, and energy.
+            </p>
+            <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#gallery" class="nav-link btn btn-primary">View Portfolio</a>
+                <a href="#commissions" class="nav-link btn btn-secondary">Commission Info</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ABOUT SECTION -->
+        <section id="about" class="max-w-4xl mx-auto px-6 py-20 sm:py-24">
+            <div class="text-center fade-in-up" data-animate>
+                <h2 class="font-heading text-4xl mb-6 text-white">Hey, I’m AquaWrath.</h2>
+                <p class="text-xl text-[var(--text-light)] leading-relaxed max-w-3xl mx-auto">
+                    I make anime-style illustrations that focus on expression, mood, and energy. I like drawing characters that feel alive — whether it’s fanart or a custom piece.
+                    <br><br>
+                    I work on both SFW and NSFW art, handled with care and respect.
+                </p>
+                <div class="mt-10 card-item p-6 inline-block">
+                    <h3 class="font-heading text-2xl text-[var(--accent-highlight)]">🎨 Commissions Open</h3>
+                    <p class="mt-2 text-text-dark">For inquiries, email me at <a href="mailto:prathvimeena102@gmail.com" class="font-bold text-white hover:underline">prathvimeena102@gmail.com</a> or reach out on social media.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY SECTION (Portfolio) -->
+        <section id="gallery" class="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+            <div class="fade-in-up" data-animate>
+                <div class="text-center mb-12">
+                    <h2 class="font-heading text-5xl font-extrabold text-white">💼 Portfolio</h2>
+                    <p class="text-xl text-text-dark mt-6 max-w-3xl mx-auto">
+                        Here’s a mix of my work. My goal is to get better with every piece.
+                    </V>
+                    <div class="mt-8 text-yellow-400 border border-yellow-700 bg-yellow-900/50 px-4 py-3 rounded-lg inline-block">
+                        <p>NSFW section below contains adult themes — viewer discretion advised.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Tabs -->
+                <div class="flex justify-center gap-4 mb-10">
+                    <button id="sfw-tab" class="gallery-tab active-tab">SFW</button>
+                    <button id="nsfw-tab" class="gallery-tab">NSFW</button>
+                </div>
+                
+                <!-- SFW Gallery Grid (5 slots) -->
+                <div id="sfw-gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                    <!-- ... 5 SFW items ... -->
+                    <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
+                        <img src="https://placehold.co/600x600/E94560/FFFFFF?text=SFW+Art+1" alt="SFW Artwork 1" class="w-full h-full object-cover rounded-md transition-transform duration-300">
+                        <div class="gallery-overlay absolute inset-0 bg-black/70 flex items-center justify-center"><p class="text-white text-lg font-bold">Click to View</p></div>
+                    </div>
+                    <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
+                        <img src="https://placehold.co/600x600/E94560/FFFFFF?text=SFW+Art+2" alt="SFW Artwork 2" class="w-full h-full object-cover rounded-md transition-transform duration-300">
+                        <div class="gallery-overlay absolute inset-0 bg-black/70 flex items-center justify-center"><p class="text-white text-lg font-bold">Click to View</p></div>
+                    </div>
+                    <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
+                        <img src="https://placehold.co/600x600/E94560/FFFFFF?text=SFW+Art+3" alt="SFW Artwork 3" class="w-full h-full object-cover rounded-md transition-transform duration-300">
+                        <div class="gallery-overlay absolute inset-0 bg-black/70 flex items-center justify-center"><p class="text-white text-lg font-bold">Click to View</p></div>
+                    </div>
+                    <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
+                        <img src="https://placehold.co/600x600/E94560/FFFFFF?text=SFW+Art+4" alt="SFW Artwork 4" class="w-full h-full object-cover rounded-md transition-transform duration-300">
+                        <div class="gallery-overlay absolute inset-0 bg-black/70 flex items-center justify-center"><p class="text-white text-lg font-bold">Click to View</p></div>
+                    </div>
+                    <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
+                        <img src="https://placehold.co/600x600/E94560/FFFFFF?text=SFW+Art+5" alt="SFW Artwork 5" class="w-full h-full object-cover rounded-md transition-transform duration-300">
+                        <div class="gallery-overlay absolute inset-0 bg-black/70 flex items-center justify-center"><p class="text-white text-lg font-bold">Click to View</p></div>
+                    </div>
+                </div>
+                
+                <!-- NSFW Gallery Grid (5 slots) -->
+                <div id="nsfw-gallery" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                    <!-- ... 5 NSFW items ... -->
+                    <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
+                        <img src="https://placehold.co/600x600/00A8CC/FFFFFF?text=NSFW+Art+1" alt="NSFW Artwork 1" class="w-full h-full object-cover rounded-md transition-transform duration-300">
+                        <div class="gallery-overlay absolute inset-0 bg-black/70 flex items-center justify-center"><p class="text-white text-lg font-bold">Click to View</p></div>
+                    </div>
+                    <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
+                        <img src="https://placehold.co/600x600/00A8CC/FFFFFF?text=NSFW+Art+2" alt="NSFW Artwork 2" class="w-full h-full object-cover rounded-md transition-transform duration-300">
+                        <div class="gallery-overlay absolute inset-0 bg-black/70 flex items-center justify-center"><p class="text-white text-lg font-bold">Click to View</p></div>
+                    </div>
+                    <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
+                        <img src="https://placehold.co/600x600/00A8CC/FFFFFF?text=NSFW+Art+3" alt="NSFW Artwork 3" class="w-full h-full object-cover rounded-md transition-transform duration-300">
+                        <div class="gallery-overlay absolute inset-0 bg-black/70 flex items-center justify-center"><p class="text-white text-lg font-bold">Click to View</p></div>
+                    </div>
+                    <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
+                        <img src="https://placehold.co/600x600/00A8CC/FFFFFF?text=NSFW+Art+4" alt="NSFW Artwork 4" class="w-full h-full object-cover rounded-md transition-transform duration-300">
+                        <div class="gallery-overlay absolute inset-0 bg-black/70 flex items-center justify-center"><p class="text-white text-lg font-bold">Click to View</p></div>
+                    </div>
+                    <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
+                        <img src="https://placehold.co/600x600/00A8CC/FFFFFF?text=NSFW+Art+5" alt="NSFW Artwork 5" class="w-full h-full object-cover rounded-md transition-transform duration-300">
+                        <div class="gallery-overlay absolute inset-0 bg-black/70 flex items-center justify-center"><p class="text-white text-lg font-bold">Click to View</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMISSION INFO SECTION -->
+        <section id="commissions" class="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+            <div class="fade-in-up" data-animate>
+                <div class="text-center mb-16">
+                    <h2 class="font-heading text-5xl font-extrabold text-white">💰 Commission Prices</h2>
+                    <p class="text-lg text-text-dark mt-4">SFW & NSFW work accepted.</p>
+                </div>
+                
+                <h3 class="font-heading text-4xl text-[var(--accent-primary)] mb-8">✦ Character Illustrations</h3>
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <!-- Full Body Card -->
+                    <div class="card-item p-8 flex flex-col">
+                        <h4 class="font-heading text-3xl text-white">Full Body</h4>
+                        <p class="text-4xl font-bold text-[var(--accent-highlight)] my-4">$200 <span class="text-lg text-text-dark">USD</span></p>
+                        <p class="text-text-dark">Fully colored and shaded, with careful posing.</p>
+                    </div>
+                    <!-- Half Body Card -->
+                    <div class="card-item p-8 flex flex-col">
+                        <h4 class="font-heading text-3xl text-white">Half Body</h4>
+                        <p class="text-4xl font-bold text-[var(--accent-highlight)] my-4">$100 <span class="text-lg text-text-dark">USD</span></p>
+                        <p class="text-text-dark">A detailed piece from the waist or hips up, focusing on character and expression.</p>
+                    </div>
+                    <!-- Bust / Portrait Card -->
+                    <div class="card-item p-8 flex flex-col">
+                        <h4 class="font-heading text-3xl text-white">Bust / Portrait</h4>
+                        <p class="text-4xl font-bold text-[var(--accent-highlight)] my-4">$80 <span class="text-lg text-text-dark">USD</span></p>
+                        <p class="text-text-dark">Polished portrait-style piece — perfect for icons, profiles, or OC showcases.</p>
+                    </div>
+                </div>
+
+                <h3 class="font-heading text-4xl text-[var(--accent-secondary)] mb-8">✦ Add-Ons & Extras</h3>
+                <div class="card-item p-8 grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-heading text-2xl text-white mb-2">Additional Character</h4>
+                        <p class="text-3xl font-bold text-[var(--accent-secondary)]">+$120</p>
+                    </div>
+                    <div>
+                        <h4 class="font-heading text-2xl text-white mb-2">Alt. Outfit / Expression</h4>
+                        <p class="text-3xl font-bold text-[var(--accent-secondary)]">+$50–70</p>
+                        <p class="text-text-dark">(depending on complexity)</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h4 class="font-heading text-2xl text-white mb-2">Commercial Use</h4>
+                        <p class="text-3xl font-bold text-[var(--accent-secondary)]">+30-40%</p>
+                        <p class="text-text-dark">For merch, streaming, or promotion. Adds to the total price.</p>
+                    </div>
+                </div>
+                <p class="text-text-dark mt-6 text-center">
+                    Complex backgrounds, armor, props, or alt versions may add to the price depending on complexity.
+                </p>
+            </div>
+        </section>
+
+        <!-- TERMS SECTION -->
+        <section id="terms" class="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+             <div class="fade-in-up" data-animate>
+                <div class="text-center mb-16">
+                    <h2 class="font-heading text-5xl font-extrabold text-white">🧾 Terms</h2>
+                </div>
+                <div class="card-item p-8 md:p-12">
+                    <ul class="list-disc list-inside space-y-4 text-lg text-text-dark">
+                        <li><span class="font-semibold text-white">I only take payment once the flats are approved</span> (PayPal only). But if you would like to pay first, that's fine as well.</li>
+                        <li>You’ll get progress updates and a chance for small revisions.</li>
+                        <li>I keep the right to post finished work unless otherwise discussed.</li>
+                        <li><span class="font-semibold text-white">No AI, tracing, or resale</span> without permission.</li>
+                        <li>NSFW requests accepted.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+            <div class="text-center fade-in-up" data-animate>
+                 <h2 class="font-heading text-5xl font-extrabold mb-4 text-white">📬 Contact</h2>
+                 <p class="text-xl text-text-dark mb-10 max-w-2xl mx-auto">Let’s work together. DMs are open on:</p>
+                 <div class="flex flex-wrap justify-center gap-5">
+                    <a href="https://twitter.com/Aqua_Wrath" target="_blank" rel="noopener noreferrer" class="btn btn-secondary !border-[var(--accent-secondary)] !text-[var(--accent-secondary)] hover:!bg-white hover:!text-black">
+                        Twitter: @Aqua_Wrath
+                    </a>
+                    <a href="https://www.reddit.com/user/Deep_tomatillo8453" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                        Reddit: u/Deep_tomatillo8453
+                    </a>
+                    <a href="#" class="btn btn-secondary !border-[#5865F2] !text-[#5865F2] hover:!bg-[#5865F2] hover:!text-white">
+                        Discord: aqua_fang
+                    </a>
+                    <a href="mailto:prathvimeena102@gmail.com" class="btn btn-primary">
+                        Email Me
+                    </a>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-10 px-6 border-t border-[var(--border-color)]">
+        <p class="text-text-dark">© 2025 AquaWrath. All rights reserved.</p>
+        <p class="text-gray-600 mt-2 text-sm">Do not repost, edit, or use my work without permission.</p>
+    </footer>
+    
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="lightbox fixed inset-0 z-50 items-center justify-center p-4" style="background-color: rgba(17, 17, 17, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+        <img id="lightbox-image" src="" alt="Full-size artwork" class="max-w-full max-h-full rounded-lg shadow-2xl">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white text-5xl font-bold hover:text-gray-400 transition-colors">&times;</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- SMOOTH SCROLL & NAVIGATION FIX ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = targetPosition - 40; // 40px offset for spacing
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Lightbox functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxClose = document.getElementById('lightbox-close');
+            
+            function setupLightboxListeners() {
+                document.querySelectorAll('.gallery-item').forEach(item => {
+                    item.onclick = () => {
+                        const imgSrc = item.querySelector('img').src;
+                        lightboxImage.src = imgSrc;
+                        lightbox.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
+                    };
+                });
+            }
+
+            const closeLightbox = () => {
+                lightbox.style.display = 'none';
+                lightboxImage.src = '';
+                document.body.style.overflow = 'auto';
+            };
+
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                    closeLightbox();
+                }
+            });
+
+            // Scroll animation functionality
+            const animatedElements = document.querySelectorAll('[data-animate]');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Gallery Tab functionality
+            const sfwTab = document.getElementById('sfw-tab');
+            const nsfwTab = document.getElementById('nsfw-tab');
+            const sfwGallery = document.getElementById('sfw-gallery');
+            const nsfwGallery = document.getElementById('nsfw-gallery');
+
+            sfwTab.addEventListener('click', () => {
+                sfwTab.classList.add('active-tab');
+                nsfwTab.classList.remove('active-tab');
+                sfwGallery.classList.remove('hidden');
+                nsfwGallery.classList.add('hidden');
+                setupLightboxListeners();
+            });
+
+            nsfwTab.addEventListener('click', () => {
+                nsfwTab.classList.add('active-tab');
+                sfwTab.classList.remove('active-tab');
+                nsfwGallery.classList.remove('hidden');
+                sfwGallery.classList.add('hidden');
+                setupLightboxListeners();
+            });
+
+            // Initial setup for lightbox
+            setupLightboxListeners();
+        });
+    </script>
+</body>
+</html>
