@@ -175,7 +175,7 @@
                 <div id="nsfw-gallery" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                     <!-- ... 5 NSFW items ... -->
                     <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
-                        <img src="https://placehold.co/600x600/00A8CC/FFFFFF?text=NSFW+Art+1" alt="NSFW Artwork 1" class="w-full h-full object-cover rounded-md transition-transform duration-300">
+                        <img src="https://i.ibb.co/238gBk1x/alexandria-jpg.jpg" alt="NSFW Artwork (Alexandria)" class="w-full h-full object-cover rounded-md transition-transform duration-300">
                         <div class="gallery-overlay absolute inset-0 bg-black/70 flex items-center justify-center"><p class="text-white text-lg font-bold">Click to View</p></div>
                     </div>
                     <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
@@ -187,7 +187,7 @@
                         <div class="gallery-overlay absolute inset-0 bg-black/70 flex items-center justify-center"><p class="text-white text-lg font-bold">Click to View</p></div>
                     </div>
                     <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
-                        <img src="https://placehold.co/600x600/00A8CC/FFFFFF?text=NSFW+Art+4" alt="NSFW Artwork 4" class="w-full h-full object-cover rounded-md transition-transform duration-300">
+                        <img src="https." alt="NSFW Artwork 4" class="w-full h-full object-cover rounded-md transition-transform duration-300">
                         <div class="gallery-overlay absolute inset-0 bg-black/70 flex items-center justify-center"><p class="text-white text-lg font-bold">Click to View</p></div>
                     </div>
                     <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg cursor-pointer card-item p-1">
@@ -360,7 +360,7 @@
             const animatedElements = document.querySelectorAll('[data-animate]');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
+                    if (entry.isIntersectDacting) {
                         entry.target.classList.add('is-visible');
                         observer.unobserve(entry.target);
                     }
