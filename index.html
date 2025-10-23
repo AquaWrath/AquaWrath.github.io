@@ -341,5 +341,64 @@
             }
 
             const closeLightbox = () => {
-                lightbox.style.display =.
+                lightbox.style.display = 'none'; // This was the broken line
+                lightboxImage.src = '';
+                document.body.style.overflow = 'auto';
+            };
+
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                    closeLightbox();
+                }
+            });
+
+            // Scroll animation functionality
+            const animatedElements = document.querySelectorAll('[data-animate]');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Gallery Tab functionality
+            const sfwTab = document.getElementById('sfw-tab');
+            const nsfwTab = document.getElementById('nsfw-tab');
+            const sfwGallery = document.getElementById('sfw-gallery');
+            const nsfwGallery = document.getElementById('nsfw-gallery');
+
+            sfwTab.addEventListener('click', () => {
+                sfwTab.classList.add('active-tab');
+                nsfwTab.classList.remove('active-tab');
+                sfwGallery.classList.remove('hidden');
+                nsfwGallery.classList.add('hidden');
+                setupLightboxListeners();
+            });
+
+            nsfwTab.addEventListener('click', () => {
+                nsfwTab.classList.add('active-tab');
+                sfwTab.classList.remove('active-tab');
+                nsfwGallery.classList.remove('hidden');
+                sfwGallery.classList.add('hidden');
+                setupLightboxListeners();
+            });
+
+            // Initial setup for lightbox
+            setupLightboxListeners();
+        });
+    </script>
+</body>
+</html>
 
